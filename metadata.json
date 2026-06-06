@@ -1,0 +1,6 @@
+{
+  "name": "Assistente Financeiro Pessoal",
+  "description": "Uma plataforma de gestão financeira inteligente com controle de carteiras, transações e assinaturas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
