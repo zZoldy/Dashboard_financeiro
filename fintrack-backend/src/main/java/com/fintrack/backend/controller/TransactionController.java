@@ -59,7 +59,7 @@ public class TransactionController {
         User loggedUser = getAuthenticatedUser();
         return transactionRepository.findById(id)
                 .map(t -> {
-                    if (!t.getWallet().getUserId().equals(loggedUser.getId())) {
+                    if (!t.getWallet().getIdUsuario().equals(loggedUser.getId())) {
                         return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acesso negado.");
                     }
                     return ResponseEntity.ok(t);
@@ -78,7 +78,7 @@ public class TransactionController {
         Wallet wallet = walletRepository.findById(dto.getWalletId())
                 .orElseThrow(() -> new RuntimeException("Carteira não encontrada. ID: " + dto.getWalletId()));
 
-        if (!wallet.getUserId().equals(loggedUser.getId())) {
+        if (!wallet.getIdUsuario().equals(loggedUser.getId())) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN)
                     .body("A carteira de destino não pertence ao usuário autenticado.");
         }
@@ -132,7 +132,7 @@ public class TransactionController {
 
         return transactionRepository.findById(id)
                 .map(t -> {
-                    if (!t.getWallet().getUserId().equals(loggedUser.getId())) {
+                    if (!t.getWallet().getIdUsuario().equals(loggedUser.getId())) {
                         return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acesso negado.");
                     }
 
@@ -143,7 +143,7 @@ public class TransactionController {
 
                     // Carrega nova Wallet se tiver mudado
                     Wallet wallet = walletRepository.findById(dto.getWalletId()).orElse(t.getWallet());
-                    if (!wallet.getUserId().equals(loggedUser.getId())) {
+                    if (!wallet.getIdUsuario().equals(loggedUser.getId())) {
                         return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Carteira de destino inválida.");
                     }
 
@@ -178,7 +178,7 @@ public class TransactionController {
 
         return transactionRepository.findById(id)
                 .map(t -> {
-                    if (!t.getWallet().getUserId().equals(loggedUser.getId())) {
+                    if (!t.getWallet().getIdUsuario().equals(loggedUser.getId())) {
                         return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acesso negado.");
                     }
 
@@ -203,7 +203,7 @@ public class TransactionController {
 
         return transactionRepository.findById(id)
                 .map(t -> {
-                    if (!t.getWallet().getUserId().equals(loggedUser.getId())) {
+                    if (!t.getWallet().getIdUsuario().equals(loggedUser.getId())) {
                         return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acesso negado.");
                     }
 

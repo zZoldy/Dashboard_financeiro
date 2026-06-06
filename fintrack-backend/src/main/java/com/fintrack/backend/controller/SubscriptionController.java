@@ -56,7 +56,7 @@ public class SubscriptionController {
         User loggedUser = getAuthenticatedUser();
         return subscriptionRepository.findById(id)
                 .map(sub -> {
-                    if (!sub.getWallet().getUserId().equals(loggedUser.getId())) {
+                    if (!sub.getWallet().getIdUsuario().equals(loggedUser.getId())) {
                         return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acesso não autorizado.");
                     }
                     return ResponseEntity.ok(sub);
@@ -74,7 +74,7 @@ public class SubscriptionController {
         Wallet wallet = walletRepository.findById(dto.getWalletId())
                 .orElseThrow(() -> new RuntimeException("Carteira não encontrada. ID: " + dto.getWalletId()));
 
-        if (!wallet.getUserId().equals(loggedUser.getId())) {
+        if (!wallet.getIdUsuario().equals(loggedUser.getId())) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("A carteira informada não pertence ao usuário.");
         }
 
@@ -103,12 +103,12 @@ public class SubscriptionController {
 
         return subscriptionRepository.findById(id)
                 .map(sub -> {
-                    if (!sub.getWallet().getUserId().equals(loggedUser.getId())) {
+                    if (!sub.getWallet().getIdUsuario().equals(loggedUser.getId())) {
                         return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Operação não permitida.");
                     }
 
                     Wallet wallet = walletRepository.findById(dto.getWalletId()).orElse(sub.getWallet());
-                    if (!wallet.getUserId().equals(loggedUser.getId())) {
+                    if (!wallet.getIdUsuario().equals(loggedUser.getId())) {
                         return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Carteira inválida.");
                     }
 
@@ -137,7 +137,7 @@ public class SubscriptionController {
 
         return subscriptionRepository.findById(id)
                 .map(sub -> {
-                    if (!sub.getWallet().getUserId().equals(loggedUser.getId())) {
+                    if (!sub.getWallet().getIdUsuario().equals(loggedUser.getId())) {
                         return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acesso negado.");
                     }
 
@@ -157,7 +157,7 @@ public class SubscriptionController {
 
         return subscriptionRepository.findById(id)
                 .map(sub -> {
-                    if (!sub.getWallet().getUserId().equals(loggedUser.getId())) {
+                    if (!sub.getWallet().getIdUsuario().equals(loggedUser.getId())) {
                         return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acesso negado.");
                     }
 

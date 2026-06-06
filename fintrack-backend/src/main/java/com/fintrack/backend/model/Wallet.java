@@ -66,7 +66,7 @@ public class Wallet {
     }
 
     @JsonProperty("user_id")
-    public Long getUserId() {
+    public Long getIdUsuario() {
         return user != null ? user.getId() : null;
     }
 

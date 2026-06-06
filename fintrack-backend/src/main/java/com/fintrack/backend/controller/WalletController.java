@@ -53,7 +53,7 @@ public class WalletController {
         User loggedUser = getAuthenticatedUser();
         return walletRepository.findById(id)
                 .map(wallet -> {
-                    if (!wallet.getUserId().equals(loggedUser.getId())) {
+                    if (!wallet.getIdUsuario().equals(loggedUser.getId())) {
                         return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acesso negado a esta carteira.");
                     }
                     return ResponseEntity.ok(wallet);
@@ -89,7 +89,7 @@ public class WalletController {
 
         return walletRepository.findById(id)
                 .map(wallet -> {
-                    if (!wallet.getUserId().equals(loggedUser.getId())) {
+                    if (!wallet.getIdUsuario().equals(loggedUser.getId())) {
                         return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Não é permitido alterar carteiras de terceiros.");
                     }
                     
@@ -113,7 +113,7 @@ public class WalletController {
 
         return walletRepository.findById(id)
                 .map(wallet -> {
-                    if (!wallet.getUserId().equals(loggedUser.getId())) {
+                    if (!wallet.getIdUsuario().equals(loggedUser.getId())) {
                         return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Operação não permitida.");
                     }
                     
